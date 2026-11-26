@@ -1,0 +1,139 @@
+:root{color-scheme:dark;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",sans-serif;background:#030003;color:#fae5f5}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid #ff83d9;outline-offset:4px}.experience{position:relative;width:100%;height:100%;height:100dvh;background:#030003;overflow:hidden}canvas,#film{position:absolute;inset:0;width:100%;height:100%;display:block}#film{object-fit:contain;background:#030003}#film[hidden],canvas[hidden]{display:none}.start-screen{position:absolute;inset:0;z-index:2;pointer-events:none}.start-screen[hidden]{display:none}.start-card{position:absolute;top:min(calc(50% + min(25vh,24vw) + 45px),calc(100% - 125px));left:50%;transform:translateX(-50%);text-align:center;min-width:180px;pointer-events:auto}.start-button{border:1px solid #c6469a;color:#ffd9f2;background:rgba(201,30,144,.10);padding:12px 27px;min-width:140px;letter-spacing:.1em;text-transform:lowercase;transition:background .2s,border-color .2s}.start-button:not(:disabled):hover{background:rgba(226,46,162,.25);border-color:#ffa0e2}.start-button:disabled{opacity:.6;cursor:wait}.button-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#ff56c7;box-shadow:0 0 10px #ff39bf;margin-right:10px;vertical-align:2px}.hint{font-size:12px;color:#a3879e;letter-spacing:.06em;margin:12px 0 0}.error{font-size:14px;color:#ffb5d8;line-height:1.7;max-width:330px}.map-credit{position:absolute;bottom:max(14px,env(safe-area-inset-bottom));left:0;right:0;text-align:center;margin:0 20px;color:#806c7b;font-size:11px;line-height:1.6;pointer-events:auto}.map-credit a{color:#a889a0;text-underline-offset:3px}.map-credit a:hover{color:#ff83d9}.controls{position:absolute;z-index:3;bottom:max(20px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(760px,calc(100% - 40px));display:flex;align-items:center;gap:14px;padding:12px 16px;background:rgba(18,5,17,.8);border:1px solid rgba(242,84,190,.3);backdrop-filter:blur(14px);transition:opacity .35s}.controls[hidden],.show-controls[hidden]{display:none}.controls.idle{opacity:0;pointer-events:none}.control-button{color:#f4cae6;border:0;background:transparent;white-space:nowrap;padding:5px;font-size:15px}.control-button:hover{color:#ff6ace}.time{font-size:12px;font-variant-numeric:tabular-nums;color:#c9a4bf}input[type=range]{flex:1;min-width:0;height:3px;accent-color:#ed45b4;cursor:pointer}.sound{font-size:12px;letter-spacing:.04em}.fullscreen{font-size:23px;line-height:1}.show-controls{position:absolute;z-index:2;bottom:14px;right:18px;color:#d689bd;border:0;background:transparent;letter-spacing:.2em;padding:8px;font-size:20px;opacity:.55}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(max-width:600px){.controls{gap:8px;padding:10px}.sound{font-size:11px}.fullscreen{display:none}.map-credit{font-size:10px}.start-card{top:min(calc(50% + min(22vh,30vw) + 36px),calc(100% - 125px))}}
+
+.title-art{position:absolute;inset:0;z-index:1;background:#030003;pointer-events:none}.title-art[hidden]{display:none}.title-art svg{width:100%;height:100%;display:block}.title-art path{stroke-dasharray:1;stroke-dashoffset:1;animation:title-draw .09s linear forwards;animation-delay:calc(var(--order) * .021s);filter:drop-shadow(0 0 .025px #fff) drop-shadow(0 0 .075px #ff31c7) drop-shadow(0 0 .16px #f600ae)}@keyframes title-draw{to{stroke-dashoffset:0}}@media(prefers-reduced-motion:reduce){.title-art path{animation:none;stroke-dashoffset:0}}
+
+/* Scrollable introduction; the artwork becomes the full viewport after play. */
+html,body{height:auto;min-height:100%;overflow-x:hidden;overflow-y:auto}
+.experience{height:auto;min-height:100vh;overflow:visible}
+canvas,#film{position:fixed;z-index:0}
+.start-screen{position:relative;inset:auto;pointer-events:auto;background:#030003}
+.laser-section{height:100vh;height:100svh;min-height:420px;display:flex;align-items:center;justify-content:center;padding:clamp(28px,7vw,110px);overflow:hidden}
+.laser-section svg{display:block;width:100%;height:auto;max-width:1050px;max-height:75vh;overflow:visible}
+.laser-section path{stroke-dasharray:1;stroke-dashoffset:1;filter:drop-shadow(0 0 .025px #fff) drop-shadow(0 0 .075px #ff31c7) drop-shadow(0 0 .16px #f600ae)}
+.laser-section.is-visible path{animation:title-draw .10s linear forwards;animation-delay:calc(var(--order) * var(--step))}
+.play-section{height:60vh;min-height:340px;position:relative;display:flex;align-items:center;justify-content:center}
+.play-section .start-card{position:static;transform:none}
+.play-section .map-credit{bottom:max(20px,env(safe-area-inset-bottom))}
+.is-playing{height:100%;overflow:hidden}.is-playing .experience{height:100dvh;overflow:hidden}
+@media(prefers-reduced-motion:reduce){.laser-section path{animation:none!important;stroke-dashoffset:0}}
+@media(max-width:600px){.laser-section{padding:24px}.play-section{height:55svh}}
+
+/* Suppress the round-cap pinpoints until each actual stroke begins. */
+.laser-section path{visibility:hidden}
+.laser-section.is-visible path{animation:laser-stroke .10s linear forwards;animation-delay:calc(var(--order) * var(--step) + .4s)}
+@keyframes laser-stroke{from{visibility:visible;stroke-dashoffset:1}to{visibility:visible;stroke-dashoffset:0}}
+.particle-field{fill:#ff87da;stroke:none;filter:drop-shadow(0 0 .045px #ff4dc5)}
+.particle-drift{animation:particle-float 2.5s ease-in-out infinite alternate;animation-delay:var(--drift-delay)}
+.particle{opacity:.55;transform:translate(var(--dx),var(--dy))}
+.laser-section.is-visible .particle{animation:particle-gather .4s ease-in forwards;animation-delay:calc(var(--order) * var(--step))}
+@keyframes particle-float{from{transform:translate(-.035px,.02px)}to{transform:translate(.035px,-.02px)}}
+@keyframes particle-gather{0%{transform:translate(var(--dx),var(--dy));opacity:.55}75%{opacity:.8}100%{transform:translate(0,0);opacity:0}}
+@media(prefers-reduced-motion:reduce){.laser-section path{visibility:visible}.particle-field{display:none}}
+
+/* Varied sizes and a soft magenta halo add depth to the drifting points. */
+.particle-field{fill:#ffa9e8;filter:drop-shadow(0 0 .045px #ff89df) drop-shadow(0 0 .14px #f72ab4)}
+.particle{opacity:var(--brightness,.72)}
+.particle-drift{animation-duration:2.9s}
+@keyframes particle-float{from{transform:translate(-.07px,.04px)}to{transform:translate(.07px,-.04px)}}
+@keyframes particle-gather{0%{transform:translate(var(--dx),var(--dy));opacity:var(--brightness,.72)}60%{opacity:1}100%{transform:translate(0,0);opacity:0}}
+
+/* Bilingual text stays in place while the laser artwork scrolls behind it. */
+.overview{position:fixed;z-index:5;right:clamp(24px,5vw,88px);bottom:clamp(36px,8vh,92px);width:min(440px,42vw);max-height:80svh;overflow-y:auto;color:#fff;pointer-events:auto;padding:20px 22px;background:linear-gradient(110deg,rgba(3,0,3,.75),rgba(3,0,3,.48));border-radius:2px;overscroll-behavior:contain}
+.overview[hidden],.overview-group[hidden]{display:none}
+.overview-paragraph{opacity:0;transform:translateY(10px);transition:opacity .7s ease,transform .7s ease;display:none}
+.overview-paragraph.is-revealed{display:block;opacity:1;transform:translateY(0)}
+.overview-paragraph+.overview-paragraph{margin-top:1.4rem}
+.overview p{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;font-size:clamp(15px,1.15vw,18px);line-height:1.75;font-weight:700;letter-spacing:.015em;text-shadow:0 1px 8px #000}
+.overview p.translation{font-size:clamp(12px,.9vw,14px);line-height:1.55;font-weight:500;margin-top:.65rem;color:#eee;letter-spacing:.005em}
+.overview i{font-style:italic}
+@media(max-width:700px){.overview{left:16px;right:16px;bottom:20px;width:auto;max-height:56svh;padding:14px 16px;background:rgba(3,0,3,.78)}.overview p{font-size:15px}.overview p.translation{font-size:12px}.overview-paragraph+.overview-paragraph{margin-top:1rem}}
+@media(prefers-reduced-motion:reduce){.overview-paragraph{transition:none}}
+
+/* Leave room to read each pair of paragraphs while the artwork remains in view. */
+.laser-section{height:180svh;align-items:flex-start;padding-top:0;padding-bottom:0}
+.laser-section svg{position:sticky;top:22svh}
+@media(max-width:700px){.overview{max-height:75svh}}
+
+.laser-section{overflow:clip}
+
+html{overflow-x:clip;overflow-y:auto}body{overflow:visible}body.is-playing{overflow:hidden}
+
+/* A centered, growing text layer over the laser animation. */
+.overview{top:50%;left:50%;right:auto;bottom:auto;transform:translate(-50%,-50%);width:min(760px,90vw);max-height:76svh;overflow-y:auto;text-align:center;background:transparent;padding:18px 22px;pointer-events:none;scrollbar-width:none}
+.overview::-webkit-scrollbar{display:none}
+.overview-group+.overview-group:not(:has(.is-revealed)){display:none}
+.overview-paragraph+.overview-paragraph,.overview-group+.overview-group .overview-paragraph:first-child{margin-top:1.3rem}
+.overview p{text-shadow:0 1px 4px #000,0 0 14px #000,0 0 24px #000}
+@media(max-width:700px){.overview{top:50%;left:50%;right:auto;bottom:auto;width:94vw;max-height:78svh;padding:12px 10px;background:transparent}.overview p{font-size:15px}.overview p.translation{font-size:12px}}
+
+/* A continuous bilingual layer, scrolling naturally over the laser artwork. */
+.overview{position:absolute;top:28svh;bottom:60svh;left:50%;right:auto;transform:translateX(-50%);width:min(820px,92vw);max-height:none;overflow:visible;display:flex;flex-direction:column;text-align:center;padding:0 clamp(12px,3vw,36px);background:rgba(3,0,3,.1);-webkit-backdrop-filter:blur(1.2px);backdrop-filter:blur(1.2px);pointer-events:none}
+.overview-language{display:flex;flex-direction:column;justify-content:space-evenly;flex:1;min-height:0}
+.overview p{font-size:clamp(16px,1.35vw,20px);line-height:1.8;font-weight:700;letter-spacing:.02em}
+.overview-english p{font-size:clamp(13px,1vw,15px);line-height:1.7;font-weight:500;color:#f5f2f5;letter-spacing:.01em;max-width:650px;align-self:center}
+@media(max-width:700px){.overview{top:24svh;bottom:55svh;left:50%;right:auto;transform:translateX(-50%);width:94vw;max-height:none;padding:0 12px;background:rgba(3,0,3,.1)}.overview p{font-size:15px}.overview-english p{font-size:12px}}
+
+/* Exhibition details follow the bilingual introduction. */
+.intro-art{position:relative}
+.overview{bottom:0}
+.exhibition-details{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2rem;padding:90px 24px;text-align:center;color:#fff}
+.exhibition-details h2{font-size:clamp(16px,1.35vw,20px);line-height:1.6;letter-spacing:.02em;margin:0;font-weight:700}
+.details-language ul{list-style:none;margin:0;padding:0;display:grid;gap:.9rem}
+.details-language li{font-size:clamp(15px,1.15vw,18px);font-weight:700;line-height:1.7}
+.details-english li{font-size:clamp(13px,1vw,15px);font-weight:500;line-height:1.6}
+.details-language a{color:inherit;text-underline-offset:.25em;text-decoration-color:#d75caf}
+.details-language a:hover{color:#ffb3e7}
+@media(max-width:700px){.overview{bottom:0}.exhibition-details{gap:1.6rem;padding:70px 22px}.details-language li{font-size:15px}.details-english li{font-size:13px}}
+
+/* Compact, left-aligned overview over the scrolling laser artwork. */
+.intro-art{display:grid;grid-template-columns:minmax(0,1fr)}
+.laser-background,.overview{grid-area:1 / 1}
+.laser-background{display:grid;grid-template-rows:repeat(4,minmax(100svh,1fr));min-width:0}
+.laser-section{height:auto;min-height:100svh}
+.overview{position:relative;top:auto;bottom:auto;left:auto;right:auto;transform:none;justify-self:center;align-self:start;width:min(820px,90vw);padding:30svh 0 12svh;max-height:none;display:flex;flex-direction:column;gap:2.5rem;text-align:left;background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
+.overview-language{display:flex;flex:none;flex-direction:column;justify-content:flex-start;gap:1.65em}
+.overview-english p{align-self:stretch;max-width:none}
+@media(max-width:700px){.overview{position:relative;top:auto;bottom:auto;left:auto;right:auto;transform:none;width:88vw;padding:27svh 0 10svh;text-align:left;background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;gap:2.2rem}}
+
+/* Keep the artwork at a consistent width, including the taller artists page. */
+.laser-section svg{width:min(100%,calc(75svh * 1.51275));max-width:1050px;max-height:none}
+.exhibition-details{align-items:flex-start;text-align:left;padding-left:max(24px,calc((100% - 820px) / 2));padding-right:max(24px,calc((100% - 820px) / 2))}
+
+/* Let the opening title breathe before the overview enters. */
+.overview{padding-top:120svh}
+.laser-section:first-child{position:relative}
+.scroll-cue{position:absolute;left:50%;top:84svh;width:12px;height:12px;border-right:1px solid rgba(255,174,231,.82);border-bottom:1px solid rgba(255,174,231,.82);transform:translateX(-50%) rotate(45deg);animation:scroll-cue-breathe 2.4s ease-in-out infinite}
+@keyframes scroll-cue-breathe{0%,100%{opacity:.42;transform:translate(-50%,-3px) rotate(45deg)}50%{opacity:.9;transform:translate(-50%,3px) rotate(45deg)}}
+@media(max-width:700px){.overview{padding-top:120svh}}
+@media(prefers-reduced-motion:reduce){.scroll-cue{animation:none}}
+
+/* The artwork dissolves and begins to draw again while in view. */
+.laser-section.is-visible{animation:laser-cycle-clock 12s linear}
+.laser-section.is-visible > svg > g{animation:laser-cycle-fade 12s linear both}
+@keyframes laser-cycle-clock{from{outline-color:transparent}to{outline-color:transparent}}
+@keyframes laser-cycle-fade{0%,78%{opacity:1}98%,100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.laser-section.is-visible,.laser-section.is-visible > svg > g{animation:none}}
+/* Inline YouTube player at the end of the page. */
+.play-section{height:auto;min-height:75svh;display:flex;flex-direction:column;justify-content:center;gap:18px;padding:60px 24px 90px}
+.video-wrap{width:min(100%,820px);aspect-ratio:16/9;background:#100610}
+.video-wrap iframe{display:block;border:0;width:100%;height:100%}
+.video-link{margin:0;font-size:13px;letter-spacing:.05em}
+.video-link a{color:#dca3cb;text-underline-offset:.25em}
+
+/* Artist profiles continue the same scrolling text layer. */
+.profiles{display:grid;gap:clamp(72px,9vw,140px);padding-top:clamp(36px,6vw,80px)}
+.profiles-heading{font-size:clamp(16px,1.35vw,20px);font-weight:700;letter-spacing:.04em;margin:0}
+.profile{display:grid;grid-template-columns:minmax(0,1fr);gap:24px}
+.profile-image{width:min(100%,640px);aspect-ratio:3/2;overflow:hidden}
+.profile-image img{display:block;width:100%;height:100%;object-fit:cover}
+.profile-placeholder{border:1px solid rgba(255,255,255,.82)}
+.profile-text{display:grid;gap:1.15rem;max-width:760px}
+.profile h3{margin:0;display:grid;gap:.2rem;font-size:clamp(20px,1.8vw,25px);line-height:1.35;letter-spacing:.01em;color:#fff}
+.profile h3 span[lang="ja"]{font-size:.83em}
+.overview .profile-text p{font-size:clamp(15px,1.15vw,17px);line-height:1.9;font-weight:600}
+.overview .profile-text .profile-role{font-size:clamp(14px,1.05vw,16px);line-height:1.65;font-weight:700}
+.overview .profile-text .profile-english{font-size:clamp(13px,.95vw,14px);line-height:1.8;font-weight:500;color:#eee}
+.overview .profile-text .profile-coming{font-size:13px;font-weight:500;letter-spacing:.04em}
+@media(max-width:700px){.profiles{gap:72px;padding-top:36px}.profile{gap:20px}.overview .profile-text p{font-size:15px}.overview .profile-text .profile-role{font-size:14px}.overview .profile-text .profile-english{font-size:13px}}
+
+.laser-background{grid-template-rows:100svh repeat(3,minmax(100svh,1fr))}
