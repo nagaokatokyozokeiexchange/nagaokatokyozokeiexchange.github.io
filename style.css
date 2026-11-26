@@ -137,3 +137,8 @@ html{overflow-x:clip;overflow-y:auto}body{overflow:visible}body.is-playing{overf
 @media(max-width:700px){.profiles{gap:72px;padding-top:36px}.profile{gap:20px}.overview .profile-text p{font-size:15px}.overview .profile-text .profile-role{font-size:14px}.overview .profile-text .profile-english{font-size:13px}}
 
 .laser-background{grid-template-rows:100svh repeat(3,minmax(100svh,1fr))}
+
+.exhibition-visual{display:flex;justify-content:center;padding:60px 24px 90px}
+.exhibition-visual a{display:block;width:min(100%,1000px)}
+.exhibition-visual img{display:block;width:100%;height:auto}
+.exhibition-visual a:focus-visible{outline:2px solid #ffb8f0;outline-offset:6px}
