@@ -145,9 +145,3 @@ html{overflow-x:clip;overflow-y:auto}body{overflow:visible}body.is-playing{overf
 
 .artwork-map-credit{width:min(100%,1000px);margin:18px 0 0;color:#aaa;font-size:14px;line-height:1.6}
 .artwork-map-credit a{color:inherit;text-decoration:underline;text-underline-offset:3px}
-
-/* Quicksand letter outlines, OFL 1.1; SVG glyphs reveal in sequence. */
-.laser-section.open-font path{stroke:none;fill:#ff31c7;visibility:hidden;opacity:0;filter:drop-shadow(0 0 .025px #fff) drop-shadow(0 0 .075px #ff31c7) drop-shadow(0 0 .16px #f600ae)}
-.laser-section.open-font.is-visible path{animation:open-font-reveal .18s linear forwards;animation-delay:calc(var(--order) * var(--step) + .4s)}
-@keyframes open-font-reveal{from{visibility:visible;opacity:0}to{visibility:visible;opacity:1}}
-@media(prefers-reduced-motion:reduce){.laser-section.open-font path{visibility:visible;opacity:1;animation:none!important}}
