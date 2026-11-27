@@ -145,3 +145,6 @@ html{overflow-x:clip;overflow-y:auto}body{overflow:visible}body.is-playing{overf
 
 .artwork-map-credit{width:min(100%,1000px);margin:18px 0 0;color:#aaa;font-size:14px;line-height:1.6}
 .artwork-map-credit a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+
+/* Show the complete portrait at the same height as the other profile images. */
+.profile-image-portrait img{object-fit:contain;object-position:left center}
