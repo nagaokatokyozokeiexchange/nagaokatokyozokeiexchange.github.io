@@ -161,5 +161,5 @@ html{overflow-x:clip;overflow-y:auto}body{overflow:visible}body.is-playing{overf
 /* Google Material Symbols download icon: Apache-2.0; see licenses/material-symbols-APACHE-2.0.txt. */
 .press-gallery figure>a{border:1px solid #fff}
 .press-gallery figcaption a{display:inline-flex;align-items:center;gap:.3em;text-decoration:none}
-.press-gallery figcaption a span{text-decoration:underline;text-underline-offset:.25em}
+.press-gallery figcaption a span{text-decoration:none}
 .press-gallery .download-icon{width:1.15em;height:1.15em;flex:none;fill:currentColor}
