@@ -154,6 +154,6 @@ html{overflow-x:clip;overflow-y:auto}body{overflow:visible}body.is-playing{overf
 .laser-section path{filter:drop-shadow(0 0 .025px #ffc1ef) drop-shadow(0 0 .075px #ff31c7) drop-shadow(0 0 .16px #f600ae)}
 .particle-field{fill:#ff65db;filter:drop-shadow(0 0 .045px #ff31c7) drop-shadow(0 0 .14px #f600ae)}
 
-.press-gallery{width:min(100% - 48px,1100px);margin:0 auto;padding:40px 0 90px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,3vw,36px);align-items:start}
+.press-gallery{width:min(100% - 48px,660px);margin:0 auto;padding:40px 0 90px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,3vw,36px);align-items:start}
 .press-gallery figure{margin:0;min-width:0}.press-gallery figure>a{display:block;background:#000}.press-gallery img{display:block;width:100%;height:auto}.press-gallery figcaption{margin-top:12px;font-size:14px;line-height:1.5;letter-spacing:.02em}.press-gallery figcaption a{color:#efb5dd;text-decoration:underline;text-underline-offset:.25em}.press-gallery a:focus-visible{outline:2px solid #ff83d9;outline-offset:5px}
-@media(max-width:600px){.press-gallery{width:min(100% - 40px,420px);grid-template-columns:1fr;gap:36px;padding:30px 0 70px}}
+@media(max-width:600px){.press-gallery{width:min(100% - 40px,420px);grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding:30px 0 70px}.press-gallery figcaption{font-size:12px}}
