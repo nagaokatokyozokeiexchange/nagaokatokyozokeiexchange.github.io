@@ -148,3 +148,8 @@ html{overflow-x:clip;overflow-y:auto}body{overflow:visible}body.is-playing{overf
 
 /* Show the complete portrait at the same height as the other profile images. */
 .profile-image-portrait img{object-fit:contain;object-position:left center}
+
+/* Brighter magenta laser lettering and particle glow. */
+.laser-section svg > g{stroke:#ff31c7}
+.laser-section path{filter:drop-shadow(0 0 .025px #ffc1ef) drop-shadow(0 0 .075px #ff31c7) drop-shadow(0 0 .16px #f600ae)}
+.particle-field{fill:#ff65db;filter:drop-shadow(0 0 .045px #ff31c7) drop-shadow(0 0 .14px #f600ae)}
