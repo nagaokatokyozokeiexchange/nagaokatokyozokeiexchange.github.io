@@ -169,3 +169,7 @@ html{overflow-x:clip;overflow-y:auto}body{overflow:visible}body.is-playing{overf
 
 /* Keep links clickable above the decorative artwork. */
 .overview a{pointer-events:auto}
+
+/* Four press materials; retain compact thumbnails on small screens. */
+.press-gallery{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:600px){.press-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
