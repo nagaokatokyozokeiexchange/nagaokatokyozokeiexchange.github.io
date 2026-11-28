@@ -163,3 +163,6 @@ html{overflow-x:clip;overflow-y:auto}body{overflow:visible}body.is-playing{overf
 .press-gallery figcaption a{display:inline-flex;align-items:center;gap:.3em;text-decoration:none}
 .press-gallery figcaption a span{text-decoration:none}
 .press-gallery .download-icon{width:1.15em;height:1.15em;flex:none;fill:currentColor}
+
+/* Link icon: Google Material Symbols, Apache-2.0. */
+.external-link{display:inline-flex;align-items:baseline;gap:.3em;color:#efb5dd!important;text-decoration:none!important;vertical-align:baseline}.external-link span{text-decoration:underline;text-underline-offset:.25em}.external-link-icon{width:1em;height:1em;align-self:center;flex:none;fill:currentColor}.external-link:hover{color:#ff83d9!important}.profile-website{overflow-wrap:anywhere}
