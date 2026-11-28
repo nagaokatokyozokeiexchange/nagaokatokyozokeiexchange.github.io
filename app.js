@@ -1,5 +1,8 @@
 // Small points begin near the lettering and gather into the paths as they are drawn.
 const svgNS='http://www.w3.org/2000/svg';
+// Keep WebKit's established appearance; consolidate glow on Chromium.
+const chromiumGlow=/\b(?:Chrome|Chromium|Edg)\//.test(navigator.userAgent)&&!/\b(?:CriOS|EdgiOS)\//.test(navigator.userAgent);
+if(chromiumGlow)document.documentElement.classList.add('chromium-glow');
 document.querySelectorAll('.laser-section').forEach((section, sectionIndex)=>{
  const group=section.querySelector('svg > g');
  const paths=[...group.querySelectorAll('path')];
@@ -19,6 +22,12 @@ document.querySelectorAll('.laser-section').forEach((section, sectionIndex)=>{
   point.style.setProperty('--twinkle',`${1.6+(i%5)*.24}s`);
   point.style.setProperty('--brightness',i%12===0 ? '.95' : '.72');
   wrap.append(point);dust.append(wrap);
+ }
+ if(chromiumGlow){
+  const strokes=document.createElementNS(svgNS,'g');
+  strokes.setAttribute('class','laser-strokes');
+  paths.forEach(path=>strokes.append(path));
+  group.append(strokes);
  }
  group.prepend(dust);
 });

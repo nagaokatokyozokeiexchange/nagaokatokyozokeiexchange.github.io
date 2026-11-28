@@ -173,3 +173,9 @@ html{overflow-x:clip;overflow-y:auto}body{overflow:visible}body.is-playing{overf
 /* Four press materials; retain compact thumbnails on small screens. */
 .press-gallery{grid-template-columns:repeat(4,minmax(0,1fr))}
 @media(max-width:600px){.press-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Chromium: apply the same glow to one group instead of each SVG segment. */
+.chromium-glow .laser-section path{filter:none}
+.chromium-glow .laser-strokes{filter:drop-shadow(0 0 .025px #ffc1ef) drop-shadow(0 0 .075px #ff31c7) drop-shadow(0 0 .16px #f600ae)}
+.chromium-glow .particle-drift{animation-play-state:paused}
+.chromium-glow .laser-section.is-visible .particle-drift{animation-play-state:running}
